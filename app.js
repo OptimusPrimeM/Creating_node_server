@@ -1,4 +1,5 @@
 const http = require('http');
+const fs = require('fs');
 
 /* Define seperate function and add that to createServer()
 
@@ -21,8 +22,9 @@ http.createServer(function (req, res) {
 
 const server = http.createServer((req, res) => {
     const url = req.url;
+    const method = req.method;
 
-    if (url === '/message') {
+    if (url === '/') {
 
 
         res.write(`
@@ -67,7 +69,7 @@ const server = http.createServer((req, res) => {
   </form>
   <!-- Default form login -->
 
-
+  </body>
   <!-- JQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
@@ -76,13 +78,24 @@ const server = http.createServer((req, res) => {
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/js/mdb.min.js"></script>
-</body>
+
 
 </html>
     `);
 
         return res.end();
 
+    }
+
+    if (url === '/message' && method === 'POST') {
+        fs.writeFileSync("message.txt", "DUMMY TEST");
+        /*One way to do this 
+        res.writeHead(302, {});*/
+
+
+        res.statusCode = 302;
+        res.setHeader('Location', '/');
+        return res.end();
     }
 
 
@@ -112,7 +125,7 @@ const server = http.createServer((req, res) => {
   <h5 class="card-header info-color white-text text-center py-4">
     <strong>This is response</strong>
   </h5>
-
+  </body>
 
   <!-- JQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -122,7 +135,7 @@ const server = http.createServer((req, res) => {
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/js/mdb.min.js"></script>
-</body>
+
 
 </html>
     `);
