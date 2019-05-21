@@ -20,7 +20,7 @@ http.createServer(function (req, res) {
 /* Using arrow function*/
 
 const server = http.createServer((req, res) => {
-    console.log(req);
+    console.log(req.url, req.method, req.headers);
 
     /*Quiting from event loop*/
     process.exit();
