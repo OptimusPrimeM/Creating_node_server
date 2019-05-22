@@ -21,13 +21,13 @@ http.createServer(function (req, res) {
 /* Using arrow function*/
 
 const server = http.createServer((req, res) => {
-    const url = req.url;
-    const method = req.method;
+  const url = req.url;
+  const method = req.method;
 
-    if (url === '/') {
+  if (url === '/') {
 
 
-        res.write(`
+    res.write(`
     
     <!DOCTYPE html>
      <html lang="en">
@@ -83,23 +83,37 @@ const server = http.createServer((req, res) => {
 </html>
     `);
 
-        return res.end();
+    return res.end();
 
-    }
+  }
 
-    if (url === '/message' && method === 'POST') {
-        fs.writeFileSync("message.txt", "DUMMY TEST");
-        /*One way to do this 
-        res.writeHead(302, {});*/
+  if (url === '/message' && method === 'POST') {
+
+    const body = [];
+
+    req.on('data', (chunck) => {
+      console.log(chunck);
+      body.push(chunck);
+    });
+
+    req.on('end', () => {
+      const paresdBody = Buffer.concat(body).toString();
+      console.log(paresdBody);
+      const message = (paresdBody.split('=')[1]).replace('+'," ");
+      fs.writeFileSync("message.txt", message);
+    });
+
+    /*One way to do this 
+    res.writeHead(302, {});*/
 
 
-        res.statusCode = 302;
-        res.setHeader('Location', '/');
-        return res.end();
-    }
+    res.statusCode = 302;
+    res.setHeader('Location', '/');
+    return res.end();
+  }
 
 
-    res.write(`
+  res.write(`
     
     <!DOCTYPE html>
      <html lang="en">
@@ -142,8 +156,8 @@ const server = http.createServer((req, res) => {
 
 
 
-    /*Quiting from event loop
-    process.exit();*/
+  /*Quiting from event loop
+  process.exit();*/
 });
 
 server.listen(3000);
