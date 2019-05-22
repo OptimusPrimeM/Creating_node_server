@@ -96,20 +96,23 @@ const server = http.createServer((req, res) => {
       body.push(chunck);
     });
 
-    req.on('end', () => {
+    return req.on('end', () => {
       const paresdBody = Buffer.concat(body).toString();
       console.log(paresdBody);
-      const message = (paresdBody.split('=')[1]).replace('+'," ");
-      fs.writeFileSync("message.txt", message);
+      const message = (paresdBody.split('=')[1]).replace('+', " ");
+      fs.writeFile("message.txt", message, (error) => {
+        res.statusCode = 302;
+        res.setHeader('Location', '/');
+        return res.end();
+      });
+
     });
 
     /*One way to do this 
     res.writeHead(302, {});*/
 
 
-    res.statusCode = 302;
-    res.setHeader('Location', '/');
-    return res.end();
+
   }
 
 
