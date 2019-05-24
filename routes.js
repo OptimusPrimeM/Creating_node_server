@@ -125,7 +125,7 @@ const requestHandler = (req, res) => {
     <div class="card hoverable">
     
       <h5 class="card-header info-color white-text text-center py-4">
-        <strong>This is response</strong>
+        <strong>This is response from user</strong>
       </h5>
       </body>
     
