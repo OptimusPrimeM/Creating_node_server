@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/OptimusPrimeM/Creating_node_server/issues"
   },
-  "homepage": "https://github.com/OptimusPrimeM/Creating_node_server#readme"
+  "homepage": "https://github.com/OptimusPrimeM/Creating_node_server#readme",
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
 }
