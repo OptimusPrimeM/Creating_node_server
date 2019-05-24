@@ -19,5 +19,8 @@
   "homepage": "https://github.com/OptimusPrimeM/Creating_node_server#readme",
   "devDependencies": {
     "nodemon": "^1.19.0"
+  },
+  "dependencies": {
+    "express": "^4.17.0"
   }
 }
