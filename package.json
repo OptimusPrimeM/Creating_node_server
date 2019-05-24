@@ -1,0 +1,20 @@
+{
+  "name": "creating_node_server",
+  "version": "1.0.0",
+  "description": "Nodejs learning basic",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OptimusPrimeM/Creating_node_server.git"
+  },
+  "author": "Optmiun prime",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OptimusPrimeM/Creating_node_server/issues"
+  },
+  "homepage": "https://github.com/OptimusPrimeM/Creating_node_server#readme"
+}
