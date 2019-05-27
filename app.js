@@ -5,13 +5,11 @@ const express = require('express');
 const app = express();
 
 app.use((req, res, next) => {
-   console.log('This is first middleware');
-   next();
+    next();
 });
 
 app.use((req, res, next) => {
-    console.log('This is second middleware');
-    next();
+    res.send(`<h1>Hello from express()</h1>`);
 });
 
 const server = http.createServer(app);
