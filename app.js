@@ -1,14 +1,19 @@
-/*Code modulse*/
+/*Core modulse*/
 const http = require('http');
-
-/*Code modules*/
 const express = require('express');
-
-/*Custom modules*/
-const routes = require('./routes');
 
 const app = express();
 
-const server = http.createServer(routes);
+app.use((req, res, next) => {
+   console.log('This is first middleware');
+   next();
+});
+
+app.use((req, res, next) => {
+    console.log('This is second middleware');
+    next();
+});
+
+const server = http.createServer(app);
 
 server.listen(3000);
